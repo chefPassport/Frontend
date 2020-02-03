@@ -73,10 +73,10 @@ const SignUp = (props) => {
 
     const [ userReg, setUserReg ] = useState({
         name: '',
-        email: '',
+        username: '',
         password: '',
-        zipcode: '',
-        phoneNumber: ''
+        location: '',
+        contact_info: ''
     });
     const handleChanges = (e) => {
         setUserReg({
@@ -87,17 +87,17 @@ const SignUp = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         Axios
-            .post('', userReg)
+            .post('https://simmr.herokuapp.com/api/chefs/register', userReg)
             .then(res => {
                 console.log('new user registered', res)
                 // localStorage.setItem(,)
-                props.history.push('./')
+                props.history.push('./login')
                 setUserReg({
                     name: '',
-                    email: '',
+                    username: '',
                     password: '',
-                    zipcode: '',
-                    phoneNumber: ''
+                    location: '',
+                    contact_info: ''
                 })
             })
             .catch(err => {
@@ -136,14 +136,14 @@ const SignUp = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="User Name"
+                name="username"
+                autoComplete="username"
                 autoFocus
                 color="secondary"
                 onChange={handleChanges}
-                value={userReg.email}
+                value={userReg.username}
               />
               <TextField
                 variant="outlined"
@@ -164,26 +164,26 @@ const SignUp = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                name="zipcode"
+                name="location"
                 label="Zipcode"
                 type="number"
-                id="zipcode"
+                id="location"
                 color="secondary"
                 onChange={handleChanges}
-                value={userReg.zipcode}
+                value={userReg.location}
               />
                 <TextField
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                name="phoneNumber"
+                name="contact_info"
                 label="Phone Number"
                 type="tel"
-                id="phoneNumber"
+                id="contact_info"
                 color="secondary"
                 onChange={handleChanges}
-                value={userReg.phoneNumber}
+                value={userReg.contact_info}
               />
               <Button
                 type="submit"
