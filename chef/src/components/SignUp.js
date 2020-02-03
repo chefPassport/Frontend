@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import Yellow_Side from '../img/Yellow_Side.jpg';
 // dependancy imports
 
 // material UI imports
@@ -39,7 +40,7 @@ function Copyright() {
     },
     image: {
       backgroundImage:
-        "url(https://c1.wallpaperflare.com/preview/246/953/91/people-hand-chef-kitchen.jpg)",
+        `url(${Yellow_Side})`,
       backgroundRepeat: "no-repeat",
       backgroundColor:
         theme.palette.type === "dark"
