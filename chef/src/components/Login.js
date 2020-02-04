@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import "../index.css";
+import img from "../img/Yellow_Side.jpg";
 
 function Copyright() {
   return (
@@ -32,13 +33,7 @@ const useStyles = makeStyles(theme => ({
     height: "100vh"
   },
   image: {
-    backgroundImage:
-      "url(https://c1.wallpaperflare.com/preview/246/953/91/people-hand-chef-kitchen.jpg)",
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "dark"
-        ? theme.palette.grey[900]
-        : theme.palette.grey[50],
+    backgroundImage: `url(${img})`,
     backgroundSize: "cover",
     backgroundPosition: "center"
   },
@@ -46,15 +41,15 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    width: "80%", // Fix IE 11 issue.
+    marginTop: theme.spacing(4)
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
@@ -65,66 +60,67 @@ export default function Login() {
   const classes = useStyles();
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <img src={process.env.PUBLIC_URL + "/Logo.jpg"} height="70px" />
-          <Typography component="h1" variant="h5"></Typography>
-          <Typography component="h1" variant="h5">
-            👋🏾 Welcome! Sign in to see your recipes
-          </Typography>
-          <Typography component="h1" variant="h5">
-            or upload a new one.
-          </Typography>
-          <form className={classes.form} Validate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              color="secondary"
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              color="secondary"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="secondary"
-              className={classes.submit}
-            >
-              Sign Up
-            </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="#" variant="body2" color="secondary">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+    <div className='logInAnimation'>
+      <Grid container component="main" className={classes.root}>
+        <CssBaseline />
+        <Grid item xs={false} sm={4} md={6} className={classes.image} />
+        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <img src={process.env.PUBLIC_URL + "/Logo.jpg"} height="70px" />
+            <Typography component="h1" variant="h5">
+              👋🏾 Welcome! Sign in to see your recipes
+            </Typography>
+            <Typography component="h1" variant="h5">
+              or upload a new one.
+            </Typography>
+            <form className={classes.form} Validate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                color="secondary"
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                color="secondary"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="secondary"
+                className={classes.submit}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item>
+                  <Link href="#" variant="body2" color="secondary">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
-          </form>
-        </div>
+              <Box mt={5}>
+                <Copyright />
+              </Box>
+            </form>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
