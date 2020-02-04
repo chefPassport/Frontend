@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
@@ -9,7 +10,6 @@ import Login from './components/Login';
 import LandingPage from './components/LandingPage';
 import Profile from './components/Profile';
 import HomePage from './components/HomePage';
-
 
 function App() {
   return (
