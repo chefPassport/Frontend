@@ -77,11 +77,11 @@ const LandingPage = (props) => {
                 👋🏾 Welcome! Sign up to see your recipes or upload a new one.
             </Typography>
             <Typography component="h1" variant="h5">
-              New here? Sign up to show off your delicious work or 
-                <Link href="#" variant="body2" color="secondary">
-                    {"Click Here"}
+              New here? Sign up to show off your delicious work or   
+                <Link href="/home" variant="body2" color="secondary">
+                    {" Click Here "}
                   </Link>
-                to browse recipes.
+                  to browse recipes.
             </Typography> 
               <Button
                 type="submit"
@@ -103,7 +103,7 @@ const LandingPage = (props) => {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="#" variant="body2" color="secondary">
+                  <Link href="/home" variant="body2" color="secondary">
                     {"No thanks, I'm here to view recipes!"}
                   </Link>
                 </Grid>
