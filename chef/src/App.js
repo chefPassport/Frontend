@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 import './App.css';
 
@@ -14,8 +14,6 @@ import HomePage from './components/HomePage';
 function App() {
   return (
     <div>
-      <NavLink to='/register'> Register </NavLink>
-      <NavLink to='/login'> Log In </NavLink>
       <Switch>
         <Route exact path='/' component={LandingPage} />
         <Route path='/register' component={SignUp} />
