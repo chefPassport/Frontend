@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import { NavLink } from 'react-router-dom';
 import Yellow_Side from '../img/Yellow_Side.jpg';
 // dependancy imports
 
@@ -41,11 +40,6 @@ function Copyright() {
     image: {
       backgroundImage:
         `url(${Yellow_Side})`,
-      backgroundRepeat: "no-repeat",
-      backgroundColor:
-        theme.palette.type === "dark"
-          ? theme.palette.grey[900]
-          : theme.palette.grey[50],
       backgroundSize: "cover",
       backgroundPosition: "center"
     },
@@ -61,7 +55,7 @@ function Copyright() {
     },
     form: {
       width: "100%", // Fix IE 11 issue.
-      marginTop: theme.spacing(1)
+      marginTop: theme.spacing(4)
     },
     submit: {
       margin: theme.spacing(3, 0, 2)
@@ -93,24 +87,24 @@ const SignUp = (props) => {
                 console.log('new user registered', res)
                 // localStorage.setItem(,)
                 props.history.push('./login')
-                setUserReg({
-                    name: '',
-                    username: '',
-                    password: '',
-                    location: '',
-                    contact_info: ''
-                })
             })
             .catch(err => {
                 console.log('could not register new user', err)
+            })
+            setUserReg({
+                name: '',
+                username: '',
+                password: '',
+                location: '',
+                contact_info: ''
             })
     };
 
     return (
         <Grid container component="main" className={classes.root}>
         <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={false} sm={4} md={6} className={classes.image} />
+        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             <img src={process.env.PUBLIC_URL + "/Logo.jpg"} height="70px" />
             <Typography component="h1" variant="h5"></Typography>
