@@ -12,8 +12,9 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import "../index.css";
 import img from "../img/Yellow_Side.jpg";
+import NavBar from "./NavBar";
+import "../index.css";
 
 function Copyright() {
   return (
@@ -41,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(8, 4),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -60,7 +61,8 @@ export default function Login() {
   const classes = useStyles();
 
   return (
-    <div className='logInAnimation'>
+    <div className="logInAnimation">
+      <NavBar />
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={6} className={classes.image} />
