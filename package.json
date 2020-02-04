@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.8.4"
+  },
+  "dependencies": {
+    "babel-plugin-macros": "^2.8.0"
+  }
+}
