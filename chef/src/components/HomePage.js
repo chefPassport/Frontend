@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
+import logo from './simmr.PNG'
 import styled ,{createGlobalStyle} from 'styled-components/macro';
 
 const DesktopNav = styled.nav`
@@ -37,6 +38,10 @@ const DesktopNav = styled.nav`
         transition: 200ms linear 0s;
         outline: 0 none;
     }
+
+    form{
+        magin: 3% 3;
+    }
 `
 
 
@@ -63,22 +68,22 @@ const HomePage =() =>{
 
     return( 
         <DesktopNav>  
-            <div className='logo'><h1>Simmr</h1></div>
-            <form>
-            <label htmlFor="name">:</label>
-                <input
-                id="name"
-                type='text'
-                name='text'
-                placeholder='What are you hungry for?'
-                value={searchTerm}
-                onChange={handleChange}
-                autoComplete='off'
-                />
+            <div className='logo'><img src={logo}/></div>
+            <form classname='search'>
+                <label htmlFor="name">:</label>
+                    <input
+                    id="name"
+                    type='text'
+                    name='text'
+                    placeholder='What are you hungry for?'
+                    value={searchTerm}
+                    onChange={handleChange}
+                    autoComplete='off'
+                    />
             </form>
             <ul className='nav-links'>
                 <li>
-                    <Link to='/' className='link'>Home</Link>
+                    <Link to='/HomePage' className='link'>Home</Link>
                 </li>
                 <li>
                     <Link to='/' className='link'>Profile</Link>
