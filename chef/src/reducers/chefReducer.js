@@ -1,7 +1,7 @@
-import GET_CHEF_RECIPES from '../actions/chefActions';
-import POST_CHEF_RECIPE from '../actions/chefActions';
-import DELETE_CHEF_RECIPE from '../actions/chefActions';
-import EDIT_CHEF_RECIPE from '../actions/chefActions';
+import { GET_CHEF_RECIPES } from '../actions/chefActions';
+import { POST_CHEF_RECIPE } from '../actions/chefActions';
+import { DELETE_CHEF_RECIPE } from '../actions/chefActions';
+import { EDIT_CHEF_RECIPE } from '../actions/chefActions';
 
 const initialState = {
     chef: {
@@ -20,16 +20,16 @@ export const chefReducer = (state = initialState, action) => {
         case GET_CHEF_RECIPES:
             return {
                 chef: {
-                    ...chef,
+                    ...state.chef,
                     recipes: action.payload
                 }
             };
         case POST_CHEF_RECIPE:
             return {
                 chef: {
-                    ...chef,
+                    ...state.chef,
                     recipes: [
-                        ...recipes,
+                        ...state.chef.recipes,
                         action.payload
                     ]
                 }
@@ -37,14 +37,14 @@ export const chefReducer = (state = initialState, action) => {
         case DELETE_CHEF_RECIPE:
             return {
                 chef: {
-                    ...chef,
+                    ...state.chef,
                     recipes: state.recipes.filter(recipe => recipe.id !== action.payload)
                 }
             };
         case EDIT_CHEF_RECIPE:
             return {
                 chef: {
-                    ...chef,
+                    ...state.chef,
                     recipes: state.recipes.map(recipe => {
                         if(recipe.id === action.payload.id){
                             return action.payload

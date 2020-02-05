@@ -10,6 +10,8 @@ import Login from './components/Login';
 import LandingPage from './components/LandingPage';
 import Profile from './components/Profile';
 import HomePage from './components/HomePage';
+import RecipePage from './components/homePage_components/recipePage';
+
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
         <Route exact path='/' component={LandingPage} />
         <Route path='/register' component={SignUp} />
         <Route path='/login' component={Login} />
-        <Route path='/home' component={HomePage} />
+        <Route path='/home/recipe/:id' component={RecipePage} />
+        <Route exact path='/home' component={HomePage} />
         <PrivateRoute path='/profile' componenet={Profile} />
       </Switch>
     </div>
