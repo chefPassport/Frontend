@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import ModalForm from './ModalForm';
+import EditForm from './EditForm';
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
@@ -58,15 +58,7 @@ export default function EditModal() {
           <Typography>
           to edit this recipe.
           </Typography>
-            <ModalForm />
-            <Button
-            variant="contained"
-            type="button"
-            onClick={handleClose}
-            color="secondary"
-          >
-            Edit Recipe
-          </Button>
+            <EditForm handleClose={handleClose}/>
           </div>
         </Fade>
       </Modal>

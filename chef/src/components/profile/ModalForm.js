@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ModalForm() {
+export default function EditForm(prop) {
   const classes = useStyles();
 
   return (
@@ -35,6 +35,14 @@ export default function ModalForm() {
           variant="outlined"
         />
       </div>
+      <Button
+        variant="contained"
+        type="button"
+        onClick={prop.handleClose}
+        color="secondary"
+      >
+        Create Recipe
+      </Button>
     </form>
   );
 }
