@@ -58,15 +58,7 @@ export default function ProfileModal() {
           <Typography>
           to create a new recipe.
           </Typography>
-            <ModalForm />
-            <Button
-            variant="contained"
-            type="button"
-            onClick={handleClose}
-            color="secondary"
-          >
-            Create Recipe
-          </Button>
+            <ModalForm handleClose={handleClose}/>
           </div>
         </Fade>
       </Modal>

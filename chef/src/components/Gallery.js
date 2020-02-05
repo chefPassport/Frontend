@@ -11,7 +11,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "../index.css";
 import NavBar from "./NavBar";
-import ProfileModal from "./ProfileModal";
 import Footer from "./Footer";
 import Heart from "./Heart";
 
