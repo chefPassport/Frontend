@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Axios from 'axios';
-
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -11,7 +10,10 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import img from "../img/Yellow_Side.jpg";
-// import NavBar from "./NavBar";
+import NavBar from "./NavBar";
+import Footer from './Footer';
+
+
 import "../index.css";
 
 function Copyright() {
@@ -29,7 +31,7 @@ function Copyright() {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: "100vh"
+    height: "73vh"
   },
   image: {
     backgroundImage: `url(${img})`,
@@ -48,6 +50,10 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6)
   }
 }));
 
@@ -79,7 +85,7 @@ export default function Login(props) {
 
   return (
     <div className="logInAnimation">
-      {/* <NavBar /> */}
+       <NavBar /> 
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={6} className={classes.image} />
@@ -148,7 +154,9 @@ export default function Login(props) {
             </form>
           </div>
         </Grid>
+        
       </Grid>
+      <Footer />
     </div>
   );
 }

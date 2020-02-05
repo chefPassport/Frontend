@@ -12,8 +12,8 @@ import Container from "@material-ui/core/Container";
 import "../index.css";
 import NavBar from "./NavBar";
 import ProfileModal from "./ProfileModal";
-import EditModal from "./EditModal";
 import Footer from "./Footer";
+import Heart from "./Heart";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -62,36 +62,13 @@ export default function Profile() {
             <Container maxWidth="sm">
               <Typography
                 component="h1"
-                variant="h2"
+                variant="h3"
                 align="center"
-                color="textPrimary"
+                color="secondary"
                 gutterBottom
               >
-                Name
+                Gallery
               </Typography>
-              <Typography
-                variant="h5"
-                align="center"
-                color="textSecondary"
-                paragraph
-              >
-                Location: {}
-              </Typography>
-              <Typography
-                variant="h5"
-                align="center"
-                color="textSecondary"
-                paragraph
-              >
-                Contact: {}
-              </Typography>
-              <div className={classes.heroButtons}>
-                <Grid container spacing={2} justify="center">
-                  <Grid item>
-                    <ProfileModal />
-                  </Grid>
-                </Grid>
-              </div>
             </Container>
           </div>
           <Container className={classes.cardGrid} maxWidth="md">
@@ -115,14 +92,7 @@ export default function Profile() {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <EditModal />
-                        <Button
-                          variant="contained"
-                          type="button"
-                          color="secondary"
-                        >
-                          Delete
-                        </Button>
+                        <Heart />
                       </CardActions>
                     </Card>
                   </div>
@@ -136,4 +106,3 @@ export default function Profile() {
     </div>
   );
 }
-
