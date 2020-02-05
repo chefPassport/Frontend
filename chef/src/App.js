@@ -12,6 +12,7 @@ import Profile from './components/Profile';
 import HomePage from './components/HomePage';
 import RecipePage from './components/homePage_components/recipePage';
 
+
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
         <Route path='/home/recipe/:id' component={RecipePage} />
         <Route exact path='/home' component={HomePage} />
         <PrivateRoute path='/profile' componenet={Profile} />
+        <PrivateRoute path='/test' componenet={Test} />
       </Switch>
     </div>
   );

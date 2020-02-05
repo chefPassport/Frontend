@@ -8,13 +8,10 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import "../index.css";
@@ -49,10 +46,6 @@ function Copyright() {
       flexDirection: "column",
       alignItems: "center"
     },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main
-    },
     form: {
       width: "100%", // Fix IE 11 issue.
       marginTop: theme.spacing(4)
@@ -85,7 +78,6 @@ const SignUp = (props) => {
             .post('https://simmr.herokuapp.com/api/chefs/register', userReg)
             .then(res => {
                 console.log('new user registered', res)
-                // localStorage.setItem(,)
                 props.history.push('./login')
             })
             .catch(err => {
@@ -101,108 +93,110 @@ const SignUp = (props) => {
     };
 
     return (
-        <Grid container component="main" className={classes.root}>
-        <CssBaseline />
-        <Grid item xs={false} sm={4} md={6} className={classes.image} />
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
-          <div className={classes.paper}>
-            <img src={process.env.PUBLIC_URL + "/Logo.jpg"} height="70px" />
-            <Typography component="h1" variant="h5"></Typography>
-            <Typography component="h1" variant="h5">
-              👋🏾 Welcome! Sign up to start posting your recipes and connect with potential clients.
-            </Typography>
-            <form className={classes.form} onSubmit={handleSubmit} Validate>
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Name"
-                name="name"
-                autoComplete="name"
-                autoFocus
-                color="secondary"
-                onChange={handleChanges}
-                value={userReg.name}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="User Name"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                color="secondary"
-                onChange={handleChanges}
-                value={userReg.username}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                color="secondary"
-                onChange={handleChanges}
-                value={userReg.password}
-              />
-                <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="location"
-                label="Zipcode"
-                type="number"
-                id="location"
-                color="secondary"
-                onChange={handleChanges}
-                value={userReg.location}
-              />
-                <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="contact_info"
-                label="Phone Number"
-                type="tel"
-                id="contact_info"
-                color="secondary"
-                onChange={handleChanges}
-                value={userReg.contact_info}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="secondary"
-                className={classes.submit}
-              >
-                Sign Up
-              </Button>
-              <Grid container>
-                <Grid item>
-                  <Link href="/login" variant="body2" color="secondary">
-                    {"Already have an account? Sign in here"}
-                  </Link>
+        <div className='logInAnimation'>
+            <Grid container component="main" className={classes.root}>
+                <CssBaseline />
+                <Grid item xs={false} sm={4} md={6} className={classes.image} />
+                <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
+                <div className={classes.paper}>
+                    <img src={process.env.PUBLIC_URL + "/Logo.jpg"} height="70px" />
+                    <Typography component="h1" variant="h5"></Typography>
+                    <Typography component="h1" variant="h5">
+                        👋🏾 Welcome! Sign up to start posting your recipes and connect with potential clients.
+                    </Typography>
+                    <form className={classes.form} onSubmit={handleSubmit} Validate>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="name"
+                        label="Name"
+                        name="name"
+                        autoComplete="name"
+                        autoFocus
+                        color="secondary"
+                        onChange={handleChanges}
+                        value={userReg.name}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="username"
+                        label="User Name"
+                        name="username"
+                        autoComplete="username"
+                        autoFocus
+                        color="secondary"
+                        onChange={handleChanges}
+                        value={userReg.username}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        color="secondary"
+                        onChange={handleChanges}
+                        value={userReg.password}
+                    />
+                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="location"
+                        label="Zipcode"
+                        type="number"
+                        id="location"
+                        color="secondary"
+                        onChange={handleChanges}
+                        value={userReg.location}
+                    />
+                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="contact_info"
+                        label="Phone Number"
+                        type="tel"
+                        id="contact_info"
+                        color="secondary"
+                        onChange={handleChanges}
+                        value={userReg.contact_info}
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="secondary"
+                        className={classes.submit}
+                    >
+                        Sign Up
+                    </Button>
+                    <Grid container>
+                        <Grid item>
+                        <Link href="/login" variant="body2" color="secondary">
+                            {"Already have an account? Sign in here"}
+                        </Link>
+                        </Grid>
+                    </Grid>
+                    <Box mt={5}>
+                        <Copyright />
+                    </Box>
+                    </form>
+                </div>
                 </Grid>
-              </Grid>
-              <Box mt={5}>
-                <Copyright />
-              </Box>
-            </form>
-          </div>
-        </Grid>
-      </Grid>
+            </Grid>
+      </div>
     )
 };
 
