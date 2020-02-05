@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -18,6 +19,12 @@ import Footer from "./Footer";
 import Heart from "./gallery_components/Heart";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
+  },
   icon: {
     marginRight: theme.spacing(2)
   },
@@ -52,7 +59,26 @@ const useStyles = makeStyles(theme => ({
 const Gallery = ({allRecipes}) => {
   const classes = useStyles();
   let history = useHistory();
-  let recipesToRender = allRecipes
+  const [ recipesToRender, setRecipesToRender ] = useState(allRecipes)
+  const [ searchTerm, setSearchTerm ] = useState('')
+  
+  const changeHandle = (e) => {
+    setSearchTerm(e.target.value)
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const searchedRecipes = allRecipes.filter(recipe => 
+      recipe.recipe_title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      recipe.meal_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      recipe.ingredients.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    if(searchTerm === ''){
+      setRecipesToRender(allRecipes);
+    } else {
+      setRecipesToRender(searchedRecipes)
+    };
+  };
 
   return (
     <div className="logInAnimation">
@@ -71,6 +97,15 @@ const Gallery = ({allRecipes}) => {
               >
                 Gallery
               </Typography>
+              <form onSubmit={handleSubmit}>
+                <TextField 
+                  id="outlined-search" 
+                  label="Search" 
+                  type="search" 
+                  variant="outlined" 
+                  onChange={changeHandle}
+                />
+              </form>
             </Container>
           </div>
           <Container className={classes.cardGrid} maxWidth="md">
