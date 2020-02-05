@@ -24,7 +24,9 @@ const RecipeList = ({allRecipes}) => {
         <CardSection>
             {allRecipes ?
                 allRecipes.map(recipe => {
-                   return <RecipeCard key={recipe.id} recipe={recipe} />
+                    return  <CardCont key={recipe.id}>
+                                <RecipeCard key={recipe.id} recipe={recipe} />
+                            </CardCont>
                 }) 
                 : 
                 <div className={classes.root}>
@@ -51,4 +53,9 @@ const CardSection = styled.section`
 `;
 const H3 = styled.h3`
     margin: 20px;
+    text-align: center;
+`;
+const CardCont = styled.div`
+    margin: 0 20px 20px 15px;
+    border-radius: 15px;
 `;

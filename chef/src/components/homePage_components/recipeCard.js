@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
   });
 
 const RecipeCard = ({recipe}) => {
+    let history = useHistory();
     const classes = useStyles();
 
     return (
@@ -38,7 +40,9 @@ const RecipeCard = ({recipe}) => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button size="small" 
+                        color="primary" 
+                        onClick={() => history.push(`/home/recipe/${recipe.id}`)}>
                  Learn More
                 </Button>
             </CardActions>
