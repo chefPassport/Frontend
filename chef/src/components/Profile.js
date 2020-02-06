@@ -1,4 +1,8 @@
 import React from "react";
+import { connect } from 'react-redux';
+import { getChefRecipes } from '../actions/chefActions';
+import Axios from 'axios';
+// material-UI
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -10,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "../index.css";
+// components
 import NavBar from "./NavBar";
 import ProfileModal from "./profile/ProfileModal";
 import EditModal from "./profile/EditModal";
@@ -49,8 +54,20 @@ const useStyles = makeStyles(theme => ({
 
 const cards = [1, 2, 3, 4, 5, 6];
 
-export default function Profile() {
+const Profile = ({getChefRecipes, chefId}) => {
   const classes = useStyles();
+
+  const deleteRecipe = (recipeID) => {
+    Axios
+        .delete(`https://simmr.herokuapp.com/api/chefs/${chefId}/recipes/${recipeID}`)
+        .then(res => {
+            console.log('Recipe was edited', res)
+        })
+        .catch(err => {
+            console.log('could not edit recipe', err)
+        })
+    getChefRecipes(chefId);
+  };
 
   return (
     <div className="logInAnimation">
@@ -96,8 +113,9 @@ export default function Profile() {
           </div>
           <Container className={classes.cardGrid} maxWidth="md">
             <Grid container spacing={4}>
-              {cards.map(card => (
-                <Grid item key={card} xs={12} sm={6} md={4}>
+              {/* RECIPE CARDS BEING MAPPED */}
+              {cards.map(recipe => (
+                <Grid item key={recipe} xs={12} sm={6} md={4}>
                   <div className="card">
                     <Card className={classes.card}>
                       <CardMedia
@@ -115,11 +133,12 @@ export default function Profile() {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <EditModal />
+                        <EditModal recipe={recipe}/>
                         <Button
                           variant="contained"
                           type="button"
                           color="secondary"
+                          onClick={deleteRecipe(recipe.id)}
                         >
                           Delete
                         </Button>
@@ -128,6 +147,7 @@ export default function Profile() {
                   </div>
                 </Grid>
               ))}
+              {/* END OF RECIPE CARDS BEING MAPPED */}
             </Grid>
           </Container>
         </main>
@@ -136,4 +156,12 @@ export default function Profile() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+      chefId: state.chefReducer.chef.id
+  }
+}
+
+export default connect(mapStateToProps, {getChefRecipes})(Profile)
 

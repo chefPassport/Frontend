@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+// material-ui imports
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -13,7 +13,9 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import SearchIcon from "@material-ui/icons/Search";
 import "../index.css";
+//component imports
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Heart from "./gallery_components/Heart";

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { chefLogin } from '../actions/chefActions';
+// material-ui
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+// components
 import img from "../img/Yellow_Side.jpg";
 import NavBarNoSearch from "./NavBarNoSearch";
 import Footer from "./Footer";
@@ -60,6 +62,7 @@ export default function Login(props) {
     Axios.post("https://simmr.herokuapp.com/api/chefs/login", userLog)
       .then(res => {
         console.log("user has logged in", res);
+        chefLogin(res.data.id);
         localStorage.setItem("token", res.data.token);
         props.history.push("/home");
       })
@@ -83,7 +86,7 @@ export default function Login(props) {
             <Typography component="h1" variant="h5">
               or upload a new one.
             </Typography>
-            <form className={classes.form} onSubmit={handleSubmit} Validate>
+            <form className={classes.form} onSubmit={handleSubmit} >
               <TextField
                 variant="outlined"
                 margin="normal"
