@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import {connect} from 'react-redux';
 import { chefLogin } from '../actions/chefActions';
 // material-ui
 import Button from "@material-ui/core/Button";
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Login(props) {
+const Login = (props) => {
   const classes = useStyles();
   const [userLog, setUserLog] = useState({
     username: "",
@@ -62,7 +63,7 @@ export default function Login(props) {
     Axios.post("https://simmr.herokuapp.com/api/chefs/login", userLog)
       .then(res => {
         console.log("user has logged in", res);
-        chefLogin(res.data.id);
+        props.chefLogin(res.data.id);
         localStorage.setItem("token", res.data.token);
         props.history.push("/home");
       })
@@ -149,3 +150,5 @@ export default function Login(props) {
     </div>
   );
 }
+
+export default connect(null, {chefLogin})(Login)

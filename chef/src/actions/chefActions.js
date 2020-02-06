@@ -13,7 +13,7 @@ export const chefLogin = (id) => dispatch => {
 
 export const getChefRecipes = (id) => dispatch => {
     axiosWithAuth()
-        .get(`/api/chefs/${id}/recipes`)
+        .get(`api/chefs/${id}/recipes`)
         .then(res => {
             console.log('getting chef recipes', res)
             dispatch({ type: GET_CHEF_RECIPES, payload: res.data})

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { getChefRecipes } from '../../actions/chefActions';
 import axiosWithAuth from '../../utils/axiosWithAuth';
-import Axios from 'axios'
 // material-ui
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -25,7 +24,7 @@ const CreateRecipeForm = ({chefId, handleClose, getChefRecipes}) => {
     ingredients: '',
     instructions: '',
     meal_type: '',
-    chef_id: {chefId}  
+    chef_id: chefId  
   });
   const handleChanges = (e) => {
     setNewRecipe({
@@ -35,7 +34,8 @@ const CreateRecipeForm = ({chefId, handleClose, getChefRecipes}) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    Axios
+    console.log('FROM THE CREATE SUBMIT', newRecipe)
+    axiosWithAuth()
         .post('https://simmr.herokuapp.com/api/recipes', newRecipe)
         .then(res => {
             console.log('new recipe posted', res)
@@ -43,11 +43,20 @@ const CreateRecipeForm = ({chefId, handleClose, getChefRecipes}) => {
         .catch(err => {
             console.log('could not post recipe', err)
         })
-    // getChefRecipes(chefId);
-    // handleClose();
+    getChefRecipes(chefId);
+    setNewRecipe({
+      recipe_title: '',
+      image: '',
+      ingredients: '',
+      instructions: '',
+      meal_type: '',
+      chef_id: chefId  
+    })
+    handleClose();
   };
 
   return (
+    <>
     <form className={classes.root} onSubmit={handleSubmit} autoComplete="off">
       <div>
         <TextField
@@ -102,12 +111,21 @@ const CreateRecipeForm = ({chefId, handleClose, getChefRecipes}) => {
       <Button
         variant="contained"
         type="button"
+        color="secondary"
+        onClick={handleSubmit}
+      >
+        Post Recipe
+      </Button>
+    </form>
+    <Button
+        variant="contained"
+        type="button"
         onClick={handleClose}
         color="secondary"
       >
         Create Recipe
       </Button>
-    </form>
+    </>
   );
 };
 

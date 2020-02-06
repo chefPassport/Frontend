@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux'
 import { getChefRecipes } from '../../actions/chefActions';
-import Axios from 'axios'
+import axiosWithAuth from '../../utils/axiosWithAuth';
 //material-ui
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const EditForm = ({recipe, chefId, getChefRecipes}) => {
+const EditForm = ({recipe, chefId, getChefRecipes, handleClose}) => {
   const classes = useStyles();
   const [ editRecipe, setEditRecipe ] = useState({
     id: recipe.id,
@@ -25,7 +25,7 @@ const EditForm = ({recipe, chefId, getChefRecipes}) => {
     ingredients: recipe.ingredients,
     instructions: recipe.instructions,
     meal_type: recipe.meal_type,
-    chef_id: {chefId}  
+    chef_id: chefId   
   });
   const handleChanges = (e) => {
     setEditRecipe({
@@ -34,8 +34,9 @@ const EditForm = ({recipe, chefId, getChefRecipes}) => {
     });
   }; 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    Axios
+    // e.preventDefault();
+    console.log('FROM THE EDIT FORM')
+    axiosWithAuth()
         .put(`https://simmr.herokuapp.com/api/chefs/${chefId}/recipes/${editRecipe.id}`, editRecipe)
         .then(res => {
             console.log('Recipe was edited', res)
@@ -43,10 +44,22 @@ const EditForm = ({recipe, chefId, getChefRecipes}) => {
         .catch(err => {
             console.log('could not edit recipe', err)
         })
+    handleClose();
     getChefRecipes(chefId);
+    setEditRecipe({
+      id: recipe.id,
+      recipe_title: recipe.recipe_title,
+      image: recipe.image,
+      ingredients: recipe.ingredients,
+      instructions: recipe.instructions,
+      meal_type: recipe.meal_type,
+      chef_id: chefId   
+    })
+    
   };
   return (
-    <form className={classes.root} onSubmit={handleSubmit} Validate autoComplete="off">
+    <>
+    <form className={classes.root} onSubmit={handleSubmit}  autoComplete="off">
       <div>
         <TextField
           required
@@ -101,10 +114,19 @@ const EditForm = ({recipe, chefId, getChefRecipes}) => {
       variant="contained"
       type="button"
       color="secondary"
+      onClick={handleSubmit}
       >
         Edit Recipe
       </Button>
     </form>
+        <Button
+        variant="contained"
+        type="button"
+        color="secondary"
+        >
+          close
+        </Button>
+      </>
   );
 };
 
@@ -112,6 +134,6 @@ const mapStateToProps = (state) => {
   return {
       chefId: state.chefReducer.chef.id
   }
-}
+};
 
 export default connect(mapStateToProps, {getChefRecipes})(EditForm);
