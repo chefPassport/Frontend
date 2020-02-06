@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
 import logo from './simmr.PNG'
 import styled ,{createGlobalStyle} from 'styled-components/macro';
+import Post from './Post';
 
 const DesktopNav = styled.nav`
     display: flex;
@@ -44,7 +45,10 @@ const DesktopNav = styled.nav`
     }
 `
 
-
+const PostDes = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+`
 
 const HomePage =() =>{
     const [api, setapi] = useState([]);
@@ -67,35 +71,45 @@ const HomePage =() =>{
     };
 
     return( 
-        <DesktopNav>  
-            <div className='logo'><img src={logo}/></div>
-            <form classname='search'>
-                <label htmlFor="name">:</label>
-                    <input
-                    id="name"
-                    type='text'
-                    name='text'
-                    placeholder='What are you hungry for?'
-                    value={searchTerm}
-                    onChange={handleChange}
-                    autoComplete='off'
-                    />
-            </form>
-            <ul className='nav-links'>
-                <li>
-                    <Link to='/HomePage' className='link'>Home</Link>
-                </li>
-                <li>
-                    <Link to='/' className='link'>Profile</Link>
-                </li>
-                <li>
-                    <Link to='/' className='link'>My Recipes</Link>
-                </li>
-                <li>
-                    <Link to='/' className='link'>Settings</Link>
-                </li>
-            </ul>
-        </DesktopNav> 
+        <div>
+            <DesktopNav>  
+                <div className='logo'><img src={logo}/></div>
+                <form className='search'>
+                    <label htmlFor="name">:</label>
+                        <input
+                        id="name"
+                        type='text'
+                        name='text'
+                        placeholder='What are you hungry for?'
+                        value={searchTerm}
+                        onChange={handleChange}
+                        autoComplete='off'
+                        />
+                </form>
+                <ul className='nav-links'>
+                    <li>
+                        <Link to='/HomePage' className='link'>Home</Link>
+                    </li>
+                    <li>
+                        <Link to='/' className='link'>Profile</Link>
+                    </li>
+                    <li>
+                        <Link to='/' className='link'>My Recipes</Link>
+                    </li>
+                    <li>
+                        <Link to='/' className='link'>Settings</Link>
+                    </li>
+                </ul>
+            
+            </DesktopNav>
+            <PostDes>
+                <main>
+                    <Post/>
+                </main>
+            </PostDes>
+
+        </div>
+        
     )
 }
 
