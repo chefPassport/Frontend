@@ -89,8 +89,10 @@ const SignUp = props => {
             <img src={process.env.PUBLIC_URL + "/Logo.jpg"} height="70px" />
             <Typography component="h1" variant="h5"></Typography>
             <Typography component="h1" variant="h5">
-              👋🏾 Welcome! Sign up to start posting your recipes and connect with
-              potential clients.
+              👋🏾 Welcome! Sign up to start posting your
+            </Typography>
+            <Typography component="h1" variant="h5">
+              recipes and connect with potential clients.
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit} Validate>
               <TextField
