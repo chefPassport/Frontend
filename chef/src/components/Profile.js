@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 import { getChefRecipes } from '../actions/chefActions';
 import Axios from 'axios';
@@ -20,6 +20,8 @@ import NavBar from "./NavBar";
 import ProfileModal from "./profile/ProfileModal";
 import EditModal from "./profile/EditModal";
 import Footer from "./Footer";
+import TextFalse from './profile/conditionalComponents/ternaryTextFalse';
+import TextTrue from './profile/conditionalComponents/ternaryTextTrue'
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -53,10 +55,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// const cards = [1, 2, 3, 4, 5, 6];
+
 
 const Profile = ({getChefRecipes, chefId, chefRecipes}) => {
   const classes = useStyles();
+  const [ profileInfo, setProfileInfo ] = useState('false')
+  const [ chefInfo, setChefInfo ] = useState([])
 
   const deleteRecipe = (recipeID, chefId) => {
     axiosWithAuth()
@@ -70,6 +74,22 @@ const Profile = ({getChefRecipes, chefId, chefRecipes}) => {
     getChefRecipes(chefId);
   };
 
+  const conditionalRender = () => {
+    if(chefRecipes.length > 0){
+      setProfileInfo(true)
+      setChefInfo([chefRecipes[0].name, chefRecipes[0].location, chefRecipes[0].contact_info]);
+    } else {
+      setProfileInfo(false)
+      
+    }
+  };
+
+  useEffect(() => {
+    conditionalRender();
+  }, [chefRecipes])
+  
+
+
   return (
     <div className="logInAnimation">
       <React.Fragment>
@@ -78,15 +98,15 @@ const Profile = ({getChefRecipes, chefId, chefRecipes}) => {
         <main>
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
-              <Typography
+              {/* <Typography
                 component="h1"
                 variant="h2"
                 align="center"
                 color="textPrimary"
                 gutterBottom
-              >
-                Name
-              </Typography>
+              > */}
+                {profileInfo ? <TextTrue  chefInfo={chefInfo}/> : <TextFalse />}
+              {/* </Typography>
               <Typography
                 variant="h5"
                 align="center"
@@ -102,7 +122,7 @@ const Profile = ({getChefRecipes, chefId, chefRecipes}) => {
                 paragraph
               >
                 Contact: {}
-              </Typography>
+              </Typography> */}
               <div className={classes.heroButtons}>
                 <Grid container spacing={2} justify="center">
                   <Grid item>

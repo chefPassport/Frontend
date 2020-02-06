@@ -33,7 +33,7 @@ const CreateRecipeForm = ({chefId, handleClose, getChefRecipes}) => {
     });
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log('FROM THE CREATE SUBMIT', newRecipe)
     axiosWithAuth()
         .post('https://simmr.herokuapp.com/api/recipes', newRecipe)
