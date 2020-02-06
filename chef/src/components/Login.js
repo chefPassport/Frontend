@@ -30,7 +30,7 @@ const Button = styled.button`
 
 const Login = () => {
 return (
-<Router>
+<div>
     <LoginNav>
         <img src={pot}/>
         <MDBContainer>
@@ -51,24 +51,27 @@ return (
                 </div>
             </form>
             <p> Dont have an account?
-                <Link to='SignUp'> Sign up!</Link>
+                <Link to='/SignUp'> Sign up!</Link>
             </p>
             </MDBCol>
         </MDBRow>
         </MDBContainer>
-
+    </LoginNav>   
+    <Router>
         <Switch>
-            <Route path='/HomePage' className='link' component={HomePage}>          
+            <Route path='/HomePage' className='link' component={HomePage}>   
+
             </Route>
             <Route path='/SignUp' className='link' component={SignUp}>
-                    
+
             </Route>
         </Switch>
-    </LoginNav>   
-</Router>
- 
+    </Router>
+
+</div>
 
     );
+
 };
 
 export default Login;
