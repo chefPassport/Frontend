@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getAllRecipes } from "../actions/viewerActions";
-import styled from "styled-components";
+
+import { connect } from 'react-redux';
+import { getAllRecipes } from '../actions/viewerActions';
+import { getChefRecipes } from '../actions/chefActions';
+import styled from 'styled-components';
+
 // import NavBarC from './NavBarC';
 import NavBarNoSearch from "./NavBarNoSearch";
 import RecipeList from "./homePage_components/recipeList";
@@ -9,10 +12,14 @@ import Spotlight from "../img/Recipe_Spotlight.jpg";
 import Footer from "./Footer";
 import "../index.css";
 
-const HomePage = ({ getAllRecipes }) => {
-  useEffect(() => {
-    getAllRecipes();
-  }, []);
+
+const HomePage = ({getAllRecipes, getChefRecipes, chefId}) => {
+
+    useEffect(() => {
+        getAllRecipes();
+        getChefRecipes(chefId);
+    }, []);
+
 
   return (
     <div className="logInAnimation">
@@ -22,6 +29,7 @@ const HomePage = ({ getAllRecipes }) => {
         {/* <H3>Recipe Spotlight</H3> */}
         <ImgSpotLight src={Spotlight} alt="recipe spotlight" />
 
+
         <RecipeList />
         <Footer />
       </>
@@ -29,7 +37,15 @@ const HomePage = ({ getAllRecipes }) => {
   );
 };
 
-export default connect(() => {}, { getAllRecipes })(HomePage);
+
+const mapStateToProps = (state) => {
+    return {
+        chefId: state.chefReducer.chef.id
+    }
+}
+
+export default connect(mapStateToProps, { getAllRecipes, getChefRecipes })(HomePage)
+
 
 const ImgSpotLight = styled.img`
   max-height: 62vh;
