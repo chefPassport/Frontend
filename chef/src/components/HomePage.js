@@ -6,12 +6,20 @@ import { getChefRecipes } from '../actions/chefActions';
 import styled from 'styled-components';
 
 // import NavBarC from './NavBarC';
+<<<<<<< HEAD
+import NavBarNoSearch from './NavBarNoSearch';
+import RecipeList from './homePage_components/recipeList';
+import Spotlight from '../img/Recipe_Spotlight.jpg'
+import Footer from './Footer';
+import "../index.css";
+=======
 import NavBarNoSearch from "./NavBarNoSearch";
 import RecipeList from "./homePage_components/recipeList";
 import Spotlight from "../img/Recipe_Spotlight.jpg";
 import Footer from "./Footer";
 import "../index.css";
 
+>>>>>>> aff1e8b683b3fa090d5b2b5da80c9bcc674f8bb8
 
 const HomePage = ({getAllRecipes, getChefRecipes, chefId}) => {
 
@@ -20,6 +28,16 @@ const HomePage = ({getAllRecipes, getChefRecipes, chefId}) => {
         getChefRecipes(chefId);
     }, []);
 
+<<<<<<< HEAD
+    return (
+        <div className='logInAnimation'>
+            <NavBarNoSearch />
+            <ImgSpotLight src={Spotlight} alt='recipe spotlight'/>
+            <RecipeList />
+            <Footer />
+        </div>
+    )
+=======
 
   return (
     <div className="logInAnimation">
@@ -35,6 +53,7 @@ const HomePage = ({getAllRecipes, getChefRecipes, chefId}) => {
       </>
     </div>
   );
+>>>>>>> aff1e8b683b3fa090d5b2b5da80c9bcc674f8bb8
 };
 
 
@@ -53,6 +72,9 @@ const ImgSpotLight = styled.img`
   margin: 0 auto;
   width: 100%;
 `;
+<<<<<<< HEAD
+=======
 // const H3 = styled.h3`
 //     margin: 15px 20px 5px 20px;
 // `;
+>>>>>>> aff1e8b683b3fa090d5b2b5da80c9bcc674f8bb8
